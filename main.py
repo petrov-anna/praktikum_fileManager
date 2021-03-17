@@ -12,11 +12,14 @@ task = input("Какую операцию вы хотите выполнить?\
              "7. Удаление файлов по имени;\n"
              "8. Копирование файлов из одной папки в другую;\n"
              "9. Перемещение файлов;\n"
-             "10.Переименование файлов.\n"
+             "10.Переименование файлов;\n"
+             "11. Вывести текущую директорию;\n"
+             "12. Вывести все список всех файлов и папок;\n"
+             "13. Создание вложенных папок.\n"
              "Выберите номер операции: ")
 
 while True:
-    if 1 <= int(task) <= 10:
+    if 1 <= int(task) <= 13:
         if int(task) == 1:
             name_mkdir = input("Введите название папки, которую хотите создать: ")
             os.mkdir(name_mkdir)
@@ -138,6 +141,43 @@ while True:
             name_file = input("Введите название файла, который хотите переименовать: ")
             new_name = input("Введите новое название файла: ")
             os.rename(name_file, new_name+".txt")
+            operation = input("Если вы хотите продолжить, то введите номер операции, который хотите выполнить;\n"
+                              "Если хотите завершить, то введите слово exit: ")
+            if operation.isdigit():
+                task = operation
+            elif operation == "exit":
+                break
+            else:
+                print("Введено в некорректном формате!")
+
+        if int(task) == 11:
+            print(os.getcwd())
+            operation = input("Если вы хотите продолжить, то введите номер операции, который хотите выполнить;\n"
+                              "Если хотите завершить, то введите слово exit: ")
+            if operation.isdigit():
+                task = operation
+            elif operation == "exit":
+                break
+            else:
+                print("Введено в некорректном формате!")
+
+        if int(task) == 12:
+            print("Все папки и файлы: ", os.listdir())
+            operation = input("Если вы хотите продолжить, то введите номер операции, который хотите выполнить;\n"
+                              "Если хотите завершить, то введите слово exit: ")
+            if operation.isdigit():
+                task = operation
+            elif operation == "exit":
+                break
+            else:
+                print("Введено в некорректном формате!")
+
+        if int(task) == 13:
+            count = input("Введите количество вложенных папок: ")
+            if count == 1:
+                os.makedirs("nested1")
+            else:
+                os.makedirs("nested1"+('/nested'*(int(count)-1)))
             operation = input("Если вы хотите продолжить, то введите номер операции, который хотите выполнить;\n"
                               "Если хотите завершить, то введите слово exit: ")
             if operation.isdigit():
